@@ -1,0 +1,6 @@
+random_genre_dj:
+  id: 1
+  radio_id: 1
+  created_at: <%= 1.month.ago %>
+  updated_at: <%= 1.month.ago %>
+  type: RandomGenreDJ

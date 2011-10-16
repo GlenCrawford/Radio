@@ -1,0 +1,31 @@
+<h1>Welcome!</h1>
+
+<div id="user_info">
+  <div id="user_info_picture">
+    <img />
+  </div>
+  <div id="user_info_name"></div>
+</div>
+
+<div id="player">
+  <div id="now_playing">
+    <img />
+    <div id="now_playing_info">
+      <h3></h3>
+    </div>
+  </div>
+  <div id="controls">
+    <% [:play, :pause, :veto].each do |button| %>
+      <a href="#" id="<%= button.to_s %>_button" class="icon icon_<%= button.to_s %>"></a>
+    <% end %>
+  </div>
+</div>
+
+<div id="playlist">
+  <ul></ul>
+</div>
+
+<div id="welcome_all_users">
+  <h2>Who are you?</h2>
+  <%= render :partial => "users/user", :collection => @users %>
+</div>

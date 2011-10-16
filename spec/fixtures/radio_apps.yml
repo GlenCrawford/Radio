@@ -1,0 +1,9 @@
+radio:
+  id: 1
+  name: Radio
+  music_path: C:\Users\Glen Crawford\Desktop\Music
+  created_at: <%= 1.month.ago %>
+  updated_at: <%= 1.week.ago %>
+  background_file_name: background.jpg
+  background_content_type: image/jpeg
+  background_file_size: 292594

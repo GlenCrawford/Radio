@@ -1,0 +1,261 @@
+---
+genres_0001:
+  id: '11'
+  name: breakbeat
+  created_at: '2011-09-07 10:17:28.106298'
+  updated_at: '2011-09-07 10:17:28.106298'
+genres_0002:
+  id: '12'
+  name: dance
+  created_at: '2011-09-07 10:17:28.117298'
+  updated_at: '2011-09-07 10:17:28.117298'
+genres_0003:
+  id: '13'
+  name: hip-hop
+  created_at: '2011-09-07 10:17:28.128299'
+  updated_at: '2011-09-07 10:17:28.128299'
+genres_0004:
+  id: '14'
+  name: techno
+  created_at: '2011-09-07 10:17:28.136299'
+  updated_at: '2011-09-07 10:17:28.136299'
+genres_0005:
+  id: '15'
+  name: instrumental
+  created_at: '2011-09-07 10:17:29.20236'
+  updated_at: '2011-09-07 10:17:29.20236'
+genres_0006:
+  id: '16'
+  name: pop
+  created_at: '2011-09-07 10:17:29.213361'
+  updated_at: '2011-09-07 10:17:29.213361'
+genres_0007:
+  id: '18'
+  name: neoclassical
+  created_at: '2011-09-07 10:17:29.236362'
+  updated_at: '2011-09-07 10:17:29.236362'
+genres_0008:
+  id: '19'
+  name: rock
+  created_at: '2011-09-07 10:17:31.855512'
+  updated_at: '2011-09-07 10:17:31.855512'
+genres_0009:
+  id: '23'
+  name: grunge
+  created_at: '2011-09-07 10:17:38.486891'
+  updated_at: '2011-09-07 10:17:38.486891'
+genres_0010:
+  id: '25'
+  name: alternative
+  created_at: '2011-09-07 10:17:38.507893'
+  updated_at: '2011-09-07 10:17:38.507893'
+genres_0011:
+  id: '26'
+  name: classic rock
+  created_at: '2011-09-07 10:17:40.330997'
+  updated_at: '2011-09-07 10:17:40.330997'
+genres_0012:
+  id: '28'
+  name: blues
+  created_at: '2011-09-07 10:17:40.357998'
+  updated_at: '2011-09-07 10:17:40.357998'
+genres_0013:
+  id: '30'
+  name: acoustic
+  created_at: '2011-09-07 10:17:43.00615'
+  updated_at: '2011-09-07 10:17:43.00615'
+genres_0014:
+  id: '32'
+  name: folk
+  created_at: '2011-09-07 10:17:43.027151'
+  updated_at: '2011-09-07 10:17:43.027151'
+genres_0015:
+  id: '33'
+  name: trance
+  created_at: '2011-09-07 10:17:45.6253'
+  updated_at: '2011-09-07 10:17:45.6253'
+genres_0016:
+  id: '35'
+  name: chillout
+  created_at: '2011-09-07 10:17:54.883829'
+  updated_at: '2011-09-07 10:17:54.883829'
+genres_0017:
+  id: '36'
+  name: electronic
+  created_at: '2011-09-07 10:17:54.944833'
+  updated_at: '2011-09-07 10:17:54.944833'
+genres_0018:
+  id: '37'
+  name: punk
+  created_at: '2011-09-07 10:17:58.801053'
+  updated_at: '2011-09-07 10:17:58.801053'
+genres_0019:
+  id: '38'
+  name: punk rock
+  created_at: '2011-09-07 10:17:58.821054'
+  updated_at: '2011-09-07 10:17:58.821054'
+genres_0020:
+  id: '39'
+  name: celtic punk
+  created_at: '2011-09-07 10:17:58.903059'
+  updated_at: '2011-09-07 10:17:58.903059'
+genres_0021:
+  id: '41'
+  name: soul
+  created_at: '2011-09-07 10:18:01.950233'
+  updated_at: '2011-09-07 10:18:01.950233'
+genres_0022:
+  id: '45'
+  name: dub
+  created_at: '2011-09-07 10:18:46.160762'
+  updated_at: '2011-09-07 10:18:46.160762'
+genres_0023:
+  id: '46'
+  name: reggae
+  created_at: '2011-09-07 10:18:46.173763'
+  updated_at: '2011-09-07 10:18:46.173763'
+genres_0024:
+  id: '50'
+  name: eurodance
+  created_at: '2011-09-07 10:19:26.258056'
+  updated_at: '2011-09-07 10:19:26.258056'
+genres_0025:
+  id: '51'
+  name: relaxation
+  created_at: '2011-09-07 10:19:28.043158'
+  updated_at: '2011-09-07 10:19:28.043158'
+genres_0026:
+  id: '53'
+  name: electronica
+  created_at: '2011-09-07 10:20:10.024559'
+  updated_at: '2011-09-07 10:20:10.024559'
+genres_0027:
+  id: '56'
+  name: house
+  created_at: '2011-09-07 10:20:46.989673'
+  updated_at: '2011-09-07 10:20:46.989673'
+genres_0028:
+  id: '57'
+  name: downtempo
+  created_at: '2011-09-07 10:20:47.004674'
+  updated_at: '2011-09-07 10:20:47.004674'
+genres_0029:
+  id: '58'
+  name: trip-hop
+  created_at: '2011-09-07 10:20:47.012674'
+  updated_at: '2011-09-07 10:20:47.012674'
+genres_0030:
+  id: '59'
+  name: progressive breaks
+  created_at: '2011-09-07 10:21:08.804921'
+  updated_at: '2011-09-07 10:21:08.804921'
+genres_0031:
+  id: '60'
+  name: progressive house
+  created_at: '2011-09-07 10:21:08.815921'
+  updated_at: '2011-09-07 10:21:08.815921'
+genres_0032:
+  id: '62'
+  name: vocal trance
+  created_at: '2011-09-07 10:22:10.482449'
+  updated_at: '2011-09-07 10:22:10.482449'
+genres_0033:
+  id: '63'
+  name: smooth jazz
+  created_at: '2011-09-07 10:22:36.437933'
+  updated_at: '2011-09-07 10:22:36.437933'
+genres_0034:
+  id: '64'
+  name: classic jazz
+  created_at: '2011-09-07 10:22:36.452934'
+  updated_at: '2011-09-07 10:22:36.452934'
+genres_0035:
+  id: '66'
+  name: jazz sax
+  created_at: '2011-09-07 10:22:36.472935'
+  updated_at: '2011-09-07 10:22:36.472935'
+genres_0036:
+  id: '68'
+  name: piano
+  created_at: '2011-09-07 10:23:18.610345'
+  updated_at: '2011-09-07 10:23:18.610345'
+genres_0037:
+  id: '71'
+  name: nu metal
+  created_at: '2011-09-07 10:23:29.233953'
+  updated_at: '2011-09-07 10:23:29.233953'
+genres_0038:
+  id: '72'
+  name: rapcore
+  created_at: '2011-09-07 10:23:29.245954'
+  updated_at: '2011-09-07 10:23:29.245954'
+genres_0039:
+  id: '73'
+  name: metal
+  created_at: '2011-09-07 10:23:29.298957'
+  updated_at: '2011-09-07 10:23:29.298957'
+genres_0040:
+  id: '76'
+  name: indie
+  created_at: '2011-09-07 10:23:37.415421'
+  updated_at: '2011-09-07 10:23:37.415421'
+genres_0041:
+  id: '77'
+  name: soundtrack
+  created_at: '2011-09-07 10:23:37.426422'
+  updated_at: '2011-09-07 10:23:37.426422'
+genres_0042:
+  id: '78'
+  name: ambient
+  created_at: '2011-09-07 10:23:38.332473'
+  updated_at: '2011-09-07 10:23:38.332473'
+genres_0043:
+  id: '83'
+  name: dream
+  created_at: '2011-09-07 10:24:00.534743'
+  updated_at: '2011-09-07 10:24:00.534743'
+genres_0044:
+  id: '84'
+  name: experimental
+  created_at: '2011-09-07 10:24:51.779674'
+  updated_at: '2011-09-07 10:24:51.779674'
+genres_0045:
+  id: '86'
+  name: chill out
+  created_at: '2011-09-07 10:25:36.472231'
+  updated_at: '2011-09-07 10:25:36.472231'
+genres_0046:
+  id: '87'
+  name: drum and bass
+  created_at: '2011-09-07 10:26:17.602583'
+  updated_at: '2011-09-07 10:26:17.602583'
+genres_0047:
+  id: '89'
+  name: kiwi
+  created_at: '2011-09-07 10:26:17.626584'
+  updated_at: '2011-09-07 10:26:17.626584'
+genres_0048:
+  id: '90'
+  name: liquid funk
+  created_at: '2011-09-07 10:26:17.634585'
+  updated_at: '2011-09-07 10:26:17.634585'
+genres_0049:
+  id: '91'
+  name: lounge
+  created_at: '2011-09-07 10:26:17.642585'
+  updated_at: '2011-09-07 10:26:17.642585'
+genres_0050:
+  id: '95'
+  name: euphoric
+  created_at: '2011-09-07 10:26:53.970663'
+  updated_at: '2011-09-07 10:26:53.970663'
+genres_0051:
+  id: '96'
+  name: symphonic metal
+  created_at: '2011-09-07 10:27:11.985694'
+  updated_at: '2011-09-07 10:27:11.985694'
+genres_0052:
+  id: '97'
+  name: gothic metal
+  created_at: '2011-09-07 10:27:11.997694'
+  updated_at: '2011-09-07 10:27:11.997694'

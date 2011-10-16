@@ -1,0 +1,29 @@
+josh:
+  id: 1
+  first_name: Josh
+  last_name: Topolsky
+  created_at: <%= 5.days.ago %>
+  updated_at: <%= 3.hours.ago %>
+  picture_file_name: the_duet.jpg
+  picture_content_type: image/jpeg
+  picture_file_size: 292581
+
+nilay:
+  id: 2
+  first_name: Nilay
+  last_name: Patel
+  created_at: <%= 2.days.ago %>
+  updated_at: <%= 1.hour.ago %>
+  picture_file_name: beautiful_handcuffs.png
+  picture_content_type: image/png
+  picture_file_size: 302934
+
+paul:
+  id: 3
+  first_name: Paul
+  last_name: Miller
+  created_at: <%= 5.days.ago %>
+  updated_at: <%= 5.minutes.ago %>
+  picture_file_name: panultimate_sadness.jpg
+  picture_content_type: image/jpeg
+  picture_file_size: 94853

@@ -1,0 +1,35 @@
+veto_001:
+  id: 1
+  user_id: 1
+  track_id: 333
+  created_at: <%= 5.days.ago %>
+
+veto_002:
+  id: 2
+  user_id: 1
+  track_id: 408
+  created_at: <%= 1.month.ago %>
+
+veto_003:
+  id: 3
+  user_id: 1
+  track_id: 458
+  created_at: <%= 3.weeks.ago %>
+
+veto_004:
+  id: 4
+  user_id: 2
+  track_id: 333
+  created_at: <%= 8.minutes.ago %>
+
+veto_005:
+  id: 5
+  user_id: 2
+  track_id: 408
+  created_at: <%= 10.hours.ago %>
+
+veto_006:
+  id: 6
+  user_id: 3
+  track_id: 333
+  created_at: <%= 3.days.ago %>
