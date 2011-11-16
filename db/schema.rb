@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111001080920) do
+ActiveRecord::Schema.define(:version => 20111115071113) do
 
   create_table "djs", :force => true do |t|
     t.integer  "radio_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20111001080920) do
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
+    t.datetime "last_seen_at"
   end
 
   create_table "vetoes", :force => true do |t|

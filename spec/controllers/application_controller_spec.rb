@@ -115,4 +115,38 @@ describe RadioController do
       controller.send(:response_for_client, :not_real).should == {}
     end
   end
+
+  describe :current_user do
+    it "should return current user when logged in" do
+      controller.stub(:cookies).and_return(@cookies)
+      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+
+      get :update, :request => "all"
+
+      controller.send(:current_user).should == @user
+    end
+
+    it "should return nothing when not logged in" do
+      get :update, :request => "all"
+
+      controller.send(:current_user).should be_nil
+    end
+  end
+
+  describe :record_user_visit do
+    it "should update user's last seen at timestamp when user makes a request" do
+      controller.stub(:cookies).and_return(@cookies)
+      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+
+      time = Time.parse "2011-11-17 11:06:33"
+      Time.should_receive(:now).any_number_of_times.and_return(time)
+
+      @user.last_seen_at.should_not == time
+
+      get :update, :request => "all"
+
+      @user.reload
+      @user.last_seen_at.should == time
+    end
+  end
 end

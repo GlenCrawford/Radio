@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :authenticate, :get_radio
+  before_filter :authenticate, :get_radio, :record_user_visit
 
   private
 
@@ -36,5 +36,13 @@ class ApplicationController < ActionController::Base
       end
     end
     final_response
+  end
+
+  def current_user
+    @user if @user.is_a? User
+  end
+
+  def record_user_visit
+    current_user.seen_now if logged_in?
   end
 end

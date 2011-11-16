@@ -7,6 +7,7 @@ josh:
   picture_file_name: the_duet.jpg
   picture_content_type: image/jpeg
   picture_file_size: 292581
+  last_seen_at: <%= 1.day.ago %>
 
 nilay:
   id: 2
@@ -17,6 +18,7 @@ nilay:
   picture_file_name: beautiful_handcuffs.png
   picture_content_type: image/png
   picture_file_size: 302934
+  last_seen_at: <%= 3.hours.ago %>
 
 paul:
   id: 3
@@ -27,3 +29,4 @@ paul:
   picture_file_name: panultimate_sadness.jpg
   picture_content_type: image/jpeg
   picture_file_size: 94853
+  last_seen_at: <%= 7.minutes.ago %>

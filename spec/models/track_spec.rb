@@ -243,7 +243,7 @@ describe Track do
       new_track.album.should == "Dusty in Memphis"
       new_track.track_number.should == 3
       new_track.image.should == "http://userserve-ak.last.fm/serve/300x300/39648137.png"
-      new_track.release_date.to_s.should == "2002-10-22" # Not really, this is from the 2002 re-release.
+      new_track.release_date.to_s.should == "2006-03-20" # Not really, this is from the 2006 re-release.
       new_track.play_count.should == 0
       ((new_track.length * 100).round / 100.0).should == 148.14
 
