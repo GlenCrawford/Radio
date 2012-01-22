@@ -93,6 +93,12 @@ describe User do
     end
   end
 
+  describe :full_name do
+    it "should format full name" do
+      @user.full_name.should == "Josh Topolsky"
+    end
+  end
+
   describe :veto do
     it "should veto a track" do
       track = tracks :tracks_0051

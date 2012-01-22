@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name[0,1]}."
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def veto(track)
     vetoes.create :track => track
   end
