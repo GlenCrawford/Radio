@@ -1,0 +1,7 @@
+<% [:notice, :alert].each do |flash_type| %>
+  <% message = send flash_type %>
+  <% next unless message %>
+  <div id="flash_<%= flash_type %>" class="flash">
+    <%= message %>
+  </div>
+<% end %>

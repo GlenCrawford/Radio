@@ -1,0 +1,22 @@
+<%= form_for [:admin, @user], :html => {:multipart => true} do |f| %>
+  <%= render :partial => "admin/common/validation_errors", :locals => {:object => @user} %>
+
+  <%= form_line do %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  <% end %>
+
+  <%= form_line do %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  <% end %>
+
+  <%= form_line do %>
+    <%= f.label :picture %>
+    <%= f.file_field :picture %>
+  <% end %>
+
+  <%= form_buttons do %>
+    <%= f.submit "Save user" %>
+  <% end %>
+<% end %>
