@@ -57,7 +57,7 @@ describe Playlist do
       end
 
       it "should have tracks ordered by position" do
-        @playlist.tracks.to_a.map{|track| track.playlist_tracks.first.position}.should == 1.upto(24).to_a
+        @playlist.ordered_tracks.to_a.map{|track| track.playlist_tracks.first.position}.should == 1.upto(24).to_a
       end
     end
 
@@ -111,7 +111,7 @@ describe Playlist do
       playlist_track.playlist.should == @playlist
 
       @playlist.playlist_tracks.to_a[-1].should == playlist_track
-      @playlist.tracks.to_a[-1].should == track
+      @playlist.ordered_tracks.to_a[-1].should == track
     end
   end
 

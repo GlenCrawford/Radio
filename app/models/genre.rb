@@ -15,7 +15,7 @@ class Genre < ActiveRecord::Base
     "maksim mrvica", "top albums", "albums in my itunes",
     "records i should listen more often", "my private work station", "new to my ears",
     "do kupienia", "totec radio", "robert miles", "inspirational", "kiwi music",
-    "beautiful", "deep", "daydream", "female fronted metal", "1985"
+    "beautiful", "deep", "daydream", "female fronted metal", "1985", "1969"
   ]
 
   def self.is_valid_genre?(genre_name)

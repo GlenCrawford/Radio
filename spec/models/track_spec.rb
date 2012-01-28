@@ -228,7 +228,7 @@ describe Track do
 
       # Discover tracks in the spec/assets directory.
       expect {
-        expect{
+        expect {
           Track.discover(music_path).should be true
         }.to change(Genre, :count).by(0)
       }.to change(Track, :count).by(0) # Add one and remove one, so it should break even.
@@ -243,7 +243,7 @@ describe Track do
       new_track.album.should == "Dusty in Memphis"
       new_track.track_number.should == 3
       new_track.image.should == "http://userserve-ak.last.fm/serve/300x300/39648137.png"
-      new_track.release_date.to_s.should == "2006-03-20" # Not really, this is from the 2006 re-release.
+      new_track.release_date.to_s.should == "2002-09-30" # Not really, this is from the 2002 re-release.
       new_track.play_count.should == 0
       ((new_track.length * 100).round / 100.0).should == 148.14
 
