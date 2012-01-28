@@ -22,8 +22,6 @@ describe RadioController do
 
     @current_track = tracks :tracks_0158
     @next_track = tracks :tracks_0107
-
-    @cookies = mock "cookies"
   end
 
   describe :index do
@@ -49,9 +47,7 @@ describe RadioController do
     end
 
     it "should render all update data" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :update, :request => "all"
 
@@ -65,9 +61,7 @@ describe RadioController do
     end
 
     it "should render specific update data" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :update, :request => "player"
 
@@ -91,9 +85,7 @@ describe RadioController do
     end
 
     it "should not run play and serve correct data if user requests with the track that isn't the current one" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :play, :track => @next_track.id
 
@@ -107,9 +99,7 @@ describe RadioController do
     end
 
     it "should run play and return updated playlist and player status" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       Player.stub!(:play).and_return(true)
       Player.should_receive(:play).once
@@ -127,9 +117,7 @@ describe RadioController do
     end
 
     it "should run play, and play the next song if the current one won't play" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       Player.stub!(:play).and_return(false, true)
       Player.should_receive(:play).twice
@@ -164,9 +152,7 @@ describe RadioController do
     end
 
     it "should not run pause and render update data if user requests with non-current track" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :pause, :track => @next_track.id
 
@@ -180,9 +166,7 @@ describe RadioController do
     end
 
     it "should pause and render update data" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       Player.stub!(:pause).and_return(true)
       Player.should_receive(:pause).once
@@ -210,9 +194,7 @@ describe RadioController do
     end
 
     it "should not run veto and render update data if user requests with a non-current track" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :veto, :track => @next_track.id
 
@@ -226,9 +208,7 @@ describe RadioController do
     end
 
     it "should veto track and render update data" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       Player.stub!(:play).and_return(true)
       Player.should_receive(:play).once
@@ -263,14 +243,9 @@ describe RadioController do
   end
 
   describe :get_track do
-    before(:each) do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-    end
-
     [:play, :pause, :veto].each do |action|
       it "should run get track for action '#{action}' and successfully get track" do
-        @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+        sign_in @user
 
         Player.stub!(:play).and_return(true) if action == :play
 
@@ -282,7 +257,7 @@ describe RadioController do
       end
 
       it "should run get track for action '#{action}' and return update data if user requests with non-current track" do
-        @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+        sign_in @user
 
         get action, :track => @next_track.id
 
@@ -296,7 +271,7 @@ describe RadioController do
 
     [:index, :update].each do |action|
       it "should not run for action '#{action}'" do
-        @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id) unless action == :index
+        sign_in @user unless action == :index
         get action, :track => @current_track.id, :request => (action == :update ? "all" : nil)
 
         response.should be_success
@@ -308,14 +283,12 @@ describe RadioController do
 
   describe :maintain_playlist do
     before(:each) do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
       @radio.dj.playlist.tracks.delete(@radio.dj.playlist.tracks - [@current_track])
     end
 
     [:index, :update, :play, :pause, :veto].each do |action|
       it "should run maintain playlist for action '#{action}'" do
-        @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id) unless action == :index
+        sign_in @user unless action == :index
 
         Player.stub!(:play).and_return(true) if action == :play
 

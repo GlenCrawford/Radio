@@ -8,14 +8,11 @@ describe RadioController do
   before(:each) do
     @user = users :josh
     @radio = radio_apps :radio
-
-    @cookies = mock "cookies"
   end
 
   describe :authenticate do
     it "should recognize user and continue with action" do
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :update, :request => "all"
 
@@ -25,8 +22,9 @@ describe RadioController do
     end
 
     it "should not recognize user when invalid user ID is sent" do
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(999)
+      user = User.new
+      user.id = 999
+      sign_in user
 
       lambda {
         get :update, :request => "all"
@@ -45,8 +43,7 @@ describe RadioController do
 
   describe :logged_in? do
     it "should know that user is logged in" do
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :update, :request => "all"
 
@@ -62,8 +59,7 @@ describe RadioController do
 
   describe :get_radio do
     it "should have retrieved the radio instance" do
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :update, :request => "all"
 
@@ -73,8 +69,7 @@ describe RadioController do
 
   describe :response_for_client do
     before(:each) do
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       @full_expected_response = {
         :playlist => @radio.dj.playlist.serialize_for_client,
@@ -118,8 +113,7 @@ describe RadioController do
 
   describe :current_user do
     it "should return current user when logged in" do
-      controller.stub(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :update, :request => "all"
 
@@ -135,8 +129,7 @@ describe RadioController do
 
   describe :record_user_visit do
     it "should update user's last seen at timestamp when user makes a request" do
-      controller.stub(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       time = Time.parse "2011-11-17 11:06:33"
       Time.should_receive(:now).any_number_of_times.and_return(time)

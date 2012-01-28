@@ -5,7 +5,6 @@ describe Admin::BaseController do
 
   before(:each) do
     @user = users :josh
-    @cookies = mock "cookies"
   end
 
   describe :index do
@@ -18,9 +17,7 @@ describe Admin::BaseController do
     end
 
     it "should GET index" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@user.id)
+      sign_in @user
 
       get :index
 

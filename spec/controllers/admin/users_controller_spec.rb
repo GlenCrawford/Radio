@@ -6,7 +6,6 @@ describe Admin::UsersController do
 
   before(:each) do
     @current_user = users :josh
-    @cookies = mock "cookies"
   end
 
   {
@@ -28,9 +27,7 @@ describe Admin::UsersController do
 
   describe :index do
     it "should GET index" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       get :index
 
@@ -44,9 +41,7 @@ describe Admin::UsersController do
 
   describe :new do
     it "should GET new" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       get :new
 
@@ -65,14 +60,12 @@ describe Admin::UsersController do
       @user_data = {
         :first_name => "Joanna",
         :last_name => "Stern",
-        :picture => Rack::Test::UploadedFile.new(Rails.root.join("spec", "assets", "With smiles like that they must be stoned - TruShu.jpg"), "image/jpeg")
+        :picture => uploaded_image
       }
     end
 
     it "should POST create - but not be successful (missing attribute)" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       expect {
         post :create, :user => @user_data.reject{|key, value| key == :last_name}
@@ -90,9 +83,7 @@ describe Admin::UsersController do
     end
 
     it "should POST create - successfully" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       expect {
         post :create, :user => @user_data
@@ -113,9 +104,7 @@ describe Admin::UsersController do
 
   describe :edit do
     it "should GET edit" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       user = users :paul
 
@@ -139,9 +128,7 @@ describe Admin::UsersController do
     end
 
     it "should PUT update - but not successfully (missing attribute)" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       @user_data[:last_name] = ""
 
@@ -160,9 +147,7 @@ describe Admin::UsersController do
     end
 
     it "should PUT update - successfully" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       put :update, :id => @user.id, :user => @user_data
 
@@ -182,9 +167,7 @@ describe Admin::UsersController do
 
   describe :destroy do
     it "should DELETE destroy" do
-      @cookies.stub!(:[])
-      controller.stub!(:cookies).and_return(@cookies)
-      @cookies.should_receive(:[]).once.with(:user_id).and_return(@current_user.id)
+      sign_in @current_user
 
       user = users :paul
 
