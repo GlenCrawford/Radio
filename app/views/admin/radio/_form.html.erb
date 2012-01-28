@@ -1,0 +1,27 @@
+<%= form_for @radio, :url => admin_radio_path(@radio), :html => {:multipart => true} do |f| %>
+  <%= render :partial => "admin/common/validation_errors", :locals => {:object => @radio} %>
+
+  <%= form_line do %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= form_line do %>
+    <%= f.label :music_path %>
+    <%= f.text_field :music_path %>
+  <% end %>
+
+  <%= form_line do %>
+    <%= f.label :background %>
+    <%= f.file_field :background %>
+  <% end %>
+
+  <%= form_line do %>
+    <%= f.label :dj, "DJ" %>
+    <%= select :dj, :id, @radio.djs.map{|dj| [dj.dj_name, dj.id]}, {:selected => @radio.dj.id}, {:id => :radio_app_dj} %>
+  <% end %>
+
+  <%= form_buttons do %>
+    <%= f.submit "Save Radio" %>
+  <% end %>
+<% end %>

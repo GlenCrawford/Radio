@@ -4,6 +4,7 @@ Radio::Application.routes.draw do
   match "/admin" => "admin/base#index", :as => :admin
   namespace :admin do
     resources :users
+    resources :radio, :only => [:index, :update]
   end
 
   match "/login" => "users#login", :as => :login

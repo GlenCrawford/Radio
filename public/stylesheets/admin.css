@@ -133,7 +133,7 @@ table td {
 
 /* Forms. */
 
-input {
+input, select {
   border: 1px solid #D8D8D8;
   color: #ABABAB;
   padding: 5px;
@@ -147,7 +147,8 @@ input {
   margin-top: 9px;
 }
 
-.form_field input {
+.form_field input,
+.form_field select {
   float: left;
   width: 250px;
 }
