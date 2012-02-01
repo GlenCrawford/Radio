@@ -145,4 +145,74 @@ describe User do
       @user.last_seen_at.should == time
     end
   end
+
+  def build_vetoes
+    @user.vetoes.destroy_all
+    @vetoes = []
+    # created_at of each veto descends down the array, ie, last veto is 10 minutes ago.
+    @tracks = [
+      tracks(:tracks_0116), # A Year Ago (x2)
+      tracks(:tracks_0074), # Steal You Away (x3)
+      tracks(:tracks_0142), # Introducing (x1)
+      tracks(:tracks_0116), # A Year Ago (x2)
+      tracks(:tracks_0074), # Steal You Away (x3)
+      tracks(:tracks_0205), # The Howling (x1)
+      tracks(:tracks_0176), # Requiem (x1)
+      tracks(:tracks_0098), # Sinequanon (with Soon E MC) (x2)
+      tracks(:tracks_0074), # Steal You Away (x3)
+      tracks(:tracks_0098)  # Sinequanon (with Soon E MC) (x2)
+    ]
+    @tracks.each_with_index do |track, index|
+      veto = @user.veto track
+      veto.update_attribute :created_at, (index + 1).minutes.ago
+      @vetoes << veto
+    end
+  end
+
+  describe :recent_vetoes do
+    before(:each) do
+      build_vetoes
+    end
+
+    it "should get the recent vetoes of this user - not distinct by track" do
+      vetoes = @user.recent_vetoes 5
+      vetoes.should be_an_instance_of(ActiveRecord::Relation)
+      vetoes.map(&:class).uniq.should == [Veto]
+      vetoes.size.should == 5
+      vetoes.map{|veto| veto.track.title}.should == ["A Year Ago", "Steal You Away", "Introducing", "A Year Ago", "Steal You Away"]
+      vetoes.map(&:track).should == @tracks[0...5]
+    end
+
+    it "should get the recent vetoes of this user - distinct by track" do
+      vetoes = @user.recent_vetoes 5, true
+      vetoes.should be_an_instance_of(ActiveRecord::Relation)
+      vetoes.map(&:class).uniq.should == [Veto]
+      vetoes.size.should == 5
+      vetoes.map{|veto| veto.track.title}.should == ["A Year Ago", "Steal You Away", "Introducing", "The Howling", "Requiem"]
+      vetoes.map(&:track).should == @tracks.uniq[0...5]
+    end
+  end
+
+  describe :most_commonly_vetoed_tracks do
+    before(:each) do
+      build_vetoes
+    end
+
+    it "should get the most commonly vetoed tracks" do
+      tracks = @user.most_commonly_vetoed_tracks 5
+      tracks.should be_an_instance_of(Array)
+      tracks.map(&:class).uniq.should == [Hash]
+      tracks.size.should == 5
+
+      track_mappings = [1, 0, 7, 2, 6]
+      tracks.map{|track| track[:track].title}.should == ["Steal You Away", "A Year Ago", "Sinequanon (with Soon E MC)", "Introducing", "Requiem"]
+      tracks.map{|track| track[:track]}.should == track_mappings.map{|i| @tracks[i]}
+      tracks.each_with_index do |track, index|
+        mapping = track_mappings[index]
+        track[:track].should == @tracks[mapping]
+        track[:vetoed_at].should == @vetoes[mapping].created_at
+        track[:count].should == @tracks.select{|vetoed_track| vetoed_track == track[:track]}.size
+      end
+    end
+  end
 end

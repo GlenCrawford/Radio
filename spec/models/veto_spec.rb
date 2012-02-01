@@ -45,4 +45,39 @@ describe Veto do
       @veto.track.should == tracks(:tracks_0082)
     end
   end
+
+  describe :scopes do
+    before(:each) do
+      @user = users :josh
+      Veto.destroy_all
+      @vetoes = []
+      [
+        tracks(:tracks_0155), # Landscape (x2)
+        tracks(:tracks_0074), # Steal You Away (x2)
+        tracks(:tracks_0074), # Steal You Away (x2)
+        tracks(:tracks_0021), # Victory (x1)
+        tracks(:tracks_0155)  # Landscape (x2)
+      ].each_with_index do |track, index|
+        veto = @user.veto track
+        veto.update_attribute :created_at, (index + 1).minute.ago
+        @vetoes << veto
+      end
+    end
+
+    describe :distinct_by_track do
+      it "should get vetoes distinct by track" do
+        vetoes = Veto.distinct_by_track.to_a
+        vetoes.size.should == 3
+        vetoes.should == [0, 1, 3].map{|i| @vetoes[i]}
+      end
+    end
+
+    describe :recent_first do
+      it "should get recent vetoes first" do
+        vetoes = Veto.recent_first.to_a
+        vetoes.should == @vetoes
+        vetoes.map(&:created_at).should == Veto.all.map(&:created_at).sort{|a, b| b <=> a}
+      end
+    end
+  end
 end
