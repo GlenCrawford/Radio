@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <% if show_user %>
+      <th>User</th>
+    <% end %>
+    <th>Track</th>
+    <th><%= show_count ? "Last vetoed at" : "Vetoed at" %></th>
+    <% if show_count %>
+      <th>Number of times vetoed</th>
+    <% end %>
+  </tr>
+  <% if vetoes.any? %>
+    <% vetoes.each do |veto| %>
+      <tr>
+        <% if show_user %>
+          <td><%= veto[:user].full_name %></td>
+        <% end %>
+        <td><%= veto[:track] %></td>
+        <td><%= l veto[:vetoed_at], :format => :long %></td>
+        <% if show_count %>
+          <td><%= veto[:count] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="<%= 2 + (show_user ? 1 : 0) + (show_count ? 1 : 0) %>">No tracks to show.</td>
+    </tr>
+  <% end %>
+</table>

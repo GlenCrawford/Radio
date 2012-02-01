@@ -14,7 +14,8 @@ describe Admin::UsersController do
     :create => {:method => :post, :data => {:user => {}}},
     :edit => {:method => :get, :data => {:id => 1}},
     :update => {:method => :put, :data => {:id => 1, :user => {}}},
-    :destroy => {:method => :delete, :data => {:id => 1}}
+    :destroy => {:method => :delete, :data => {:id => 1}},
+    :show => {:method => :get, :data => {:id => 1}}
   }.each do |action, options|
     it "should not authorize logged out user - GET #{action}" do
       send options[:method], action, options[:data]
@@ -35,6 +36,24 @@ describe Admin::UsersController do
 
       response.should be_success
       response.should render_template("admin/users/index")
+      response.should render_template("layouts/admin")
+    end
+  end
+
+  describe :show do
+    it "should GET show" do
+      sign_in @current_user
+
+      user = users :nilay
+
+      get :show, :id => user.id
+
+      assigns(:user).should == user
+      assigns(:veto_stats)[:recent].should == user.recent_vetoes(5, true).map{|veto| {"track" => veto.track, "vetoed_at" => veto.created_at}}
+      assigns(:veto_stats)[:common].should == user.most_commonly_vetoed_tracks(5).map(&:stringify_keys)
+
+      response.should be_success
+      response.should render_template("admin/users/show")
       response.should render_template("layouts/admin")
     end
   end

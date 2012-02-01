@@ -1,0 +1,16 @@
+<h1>User <strong><%= @user.full_name %></strong></h1>
+
+<div class="image_border_left">
+  <%= user_picture @user %>
+</div>
+
+<p><strong>User since:</strong> <%= l @user.created_at, :format => :long %></p>
+<p><strong>Last seen at:</strong> <%= time_ago_in_words @user.last_seen_at %></p>
+
+<div class="clear"></div>
+
+<h2>Most recently vetoed tracks</h2>
+<%= render :partial => "admin/vetoes/table", :locals => {:vetoes => @veto_stats[:recent], :show_user => false, :show_count => false} %>
+
+<h2>Most commonly vetoed tracks</h2>
+<%= render :partial => "admin/vetoes/table", :locals => {:vetoes => @veto_stats[:common], :show_user => false, :show_count => true} %>

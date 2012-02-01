@@ -211,6 +211,12 @@ describe Track do
     end
   end
 
+  describe :to_s do
+    it "should pretty print track" do
+      @track.to_s.should == "#{@track.artist} - #{@track.title}"
+    end
+  end
+
   describe :discover do
     it "should discover new tracks" do
       @original_stdout = $stdout

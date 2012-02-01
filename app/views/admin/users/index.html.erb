@@ -12,7 +12,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user_picture user %></td>
-      <td><%= user.full_name %></td>
+      <td><%= link_to user.full_name, admin_user_path(user) %></td>
       <td><%= time_ago_in_words user.last_seen_at %></td>
       <td><%= link_to "Edit", edit_admin_user_path(user) %> &nbsp; <%= link_to "Delete", admin_user_path(user), :method => :delete, :confirm => "Are you sure you want to delete #{user.full_name}?" %></td>
     </tr>

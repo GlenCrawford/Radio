@@ -13,6 +13,10 @@ a {
   text-decoration: none;
 }
 
+.clear {
+  clear: both;
+}
+
 /* Headings. */
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,6 +37,11 @@ h1 strong {
   font-style: italic;
   font-weight: bolder;
   padding-left: 7px;
+}
+
+h2 {
+  margin-top: 15px;
+  margin-bottom: 3px;
 }
 
 /* Main layout. */
@@ -177,4 +186,24 @@ input, select {
 
 #errors ul li {
   margin: 4px 0;
+}
+
+/* Images. */
+
+/* Generic styles in case there's a need for a "right" class too. */
+.image_border_left {
+  padding: 2px;
+  display: inline-block;
+  border: 1px solid #EBEBEB;
+}
+
+.image_border_left {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Text styles. */
+
+strong {
+  font-weight: bold;
 }

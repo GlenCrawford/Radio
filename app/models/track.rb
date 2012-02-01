@@ -16,6 +16,10 @@ class Track < ActiveRecord::Base
     self.play_count ||= 0
   end
 
+  def to_s
+    "#{artist} - #{title}"
+  end
+
   def increment_play_count
     new_play_count = play_count + 1
     update_attribute :play_count, new_play_count

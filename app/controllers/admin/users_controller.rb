@@ -5,6 +5,13 @@ class Admin::UsersController < Admin::BaseController
     @users = User.order "first_name ASC, last_name ASC"
   end
 
+  def show
+    @veto_stats = {
+      :recent => @user.recent_vetoes(5, true).map{|veto| {:track => veto.track, :vetoed_at => veto.created_at}},
+      :common => @user.most_commonly_vetoed_tracks(5)
+    }
+  end
+
   def new
     @user = User.new
   end
