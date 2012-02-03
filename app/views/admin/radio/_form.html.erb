@@ -17,6 +17,11 @@
   <% end %>
 
   <%= form_line do %>
+    <%= f.label :time_zone %>
+    <%= f.time_zone_select :time_zone %>
+  <% end %>
+
+  <%= form_line do %>
     <%= f.label :dj, "DJ" %>
     <%= select :dj, :id, @radio.djs.map{|dj| [dj.dj_name, dj.id]}, {:selected => @radio.dj.id}, {:id => :radio_app_dj} %>
   <% end %>

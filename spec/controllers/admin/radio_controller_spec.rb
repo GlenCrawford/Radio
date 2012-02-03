@@ -43,7 +43,8 @@ describe Admin::RadioController do
       @radio_data = {
         :name => "Radio Verge",
         :music_path => "C:\\Users\\John Smith\\Music",
-        :background => uploaded_image
+        :background => uploaded_image,
+        :time_zone => "Singapore"
       }
 
       @dj = djs :random_genre_dj
@@ -73,6 +74,7 @@ describe Admin::RadioController do
       radio.name.should == @radio_data[:name]
       radio.music_path.should == @radio_data[:music_path]
       radio.background.should be_an_instance_of(Paperclip::Attachment)
+      radio.time_zone.should == @radio_data[:time_zone]
       radio.dj.dj_name.should == @dj.dj_name
 
       request.flash[:notice].should == "Radio settings have been updated!"

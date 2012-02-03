@@ -12,6 +12,7 @@ describe RadioApp do
       @radio.id.should == 1
       @radio.name.should == "Radio"
       @radio.music_path.should == "C:\\Users\\Glen Crawford\\Desktop\\Music"
+      @radio.time_zone.should == "Wellington"
     end
   end
 
@@ -22,18 +23,29 @@ describe RadioApp do
     end
 
     it "should not validate and have errors" do
-      [:name, :music_path, :dj, :background].each do |attr|
+      [:name, :music_path, :dj, :background, :time_zone].each do |attr|
         @radio.send "#{attr.to_s}=", nil
       end
 
       @radio.should_not be_valid
-      @radio.errors.size.should == 4
+      @radio.errors.size.should == 5
       @radio.errors.full_messages.sort.should == [
         "Background file name must be set.",
         "Music path must be set to the path of the music directory",
         "Name must be set to the name of the Radio",
+        "Time zone must be set for the Radio",
         "You need to select a DJ for this Radio!"
       ]
+    end
+  end
+
+  describe :callbacks do
+    describe :set_default_values do
+      it "should set default time zone for new RadioApp instance" do
+        @radio.destroy
+        @radio = RadioApp.instance
+        @radio.time_zone.should == "UTC"
+      end
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115071113) do
+ActiveRecord::Schema.define(:version => 20120203104806) do
 
   create_table "djs", :force => true do |t|
     t.integer  "radio_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20111115071113) do
     t.string   "background_file_name"
     t.string   "background_content_type"
     t.integer  "background_file_size"
+    t.string   "time_zone"
   end
 
   create_table "tracks", :force => true do |t|

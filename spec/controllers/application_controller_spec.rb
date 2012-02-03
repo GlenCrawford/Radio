@@ -142,4 +142,14 @@ describe RadioController do
       @user.last_seen_at.should == time
     end
   end
+
+  describe :set_time_zone do
+    it "should set Time zone to the Radio's time zone" do
+      sign_in @user
+
+      get :update, :request => "all"
+
+      Time.zone.to_s.should include(@radio.time_zone)
+    end
+  end
 end

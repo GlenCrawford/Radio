@@ -7,3 +7,4 @@ radio:
   background_file_name: background.jpg
   background_content_type: image/jpeg
   background_file_size: 292594
+  time_zone: Wellington

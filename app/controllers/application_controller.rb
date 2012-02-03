@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :authenticate, :get_radio, :record_user_visit
+  before_filter :authenticate, :get_radio, :record_user_visit, :set_time_zone
 
   private
 
@@ -44,5 +44,9 @@ class ApplicationController < ActionController::Base
 
   def record_user_visit
     current_user.seen_now if logged_in?
+  end
+
+  def set_time_zone
+    Time.zone = @radio.time_zone
   end
 end
