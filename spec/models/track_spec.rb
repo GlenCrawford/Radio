@@ -219,6 +219,11 @@ describe Track do
 
   describe :discover do
     it "should discover new tracks" do
+      # Use a canned response instead of going off to LastFM.
+      canned_response_path = Rails.root.join "spec", "web_service_responses", "last_fm_album_get_info_dusty_springfield.json"
+      canned_response = JSON.parse File.open(canned_response_path).read
+      LastFm.should_receive(:poll).with("album.getInfo", {:artist => "Dusty Springfield", :album => "Dusty in Memphis"}).and_return(canned_response)
+
       @original_stdout = $stdout
       $stdout = StringIO.new
 
@@ -249,7 +254,7 @@ describe Track do
       new_track.album.should == "Dusty in Memphis"
       new_track.track_number.should == 3
       new_track.image.should == "http://userserve-ak.last.fm/serve/300x300/39648137.png"
-      new_track.release_date.to_s.should == "2002-09-30" # Not really, this is from the 2002 re-release.
+      new_track.release_date.to_s.should == "1990-08-20" # Not really, this is from the 1990 re-release.
       new_track.play_count.should == 0
       ((new_track.length * 100).round / 100.0).should == 148.14
 
