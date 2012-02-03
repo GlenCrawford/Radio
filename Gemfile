@@ -12,3 +12,7 @@ gem "raop-client"
 gem "statistics2"
 
 gem "rspec-rails"
+
+group :test do
+  gem 'simplecov', :require => false
+end

@@ -4,3 +4,4 @@ tmp/
 config/database.yml
 public/images/user_pictures/
 public/images/radio_backgrounds/
+coverage
