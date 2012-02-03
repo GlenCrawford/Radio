@@ -287,5 +287,19 @@ describe Track do
         Track.discover "not_a_real_path_two"
       }.should raise_error(RuntimeError, "Cannot find music directory.")
     end
+
+    it "should skip discovered track if there is an error processing LastFM results" do
+      LastFm.should_receive(:poll).once.and_raise(IOError)
+
+      music_path = File.join Rails.root.to_s, "spec", "assets"
+
+      Track.destroy_all
+
+      expect {
+        expect {
+          Track.discover(music_path).should be true
+        }.to change(Genre, :count).by(0)
+      }.to change(Track, :count).by(0)
+    end
   end
 end
