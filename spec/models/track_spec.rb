@@ -291,6 +291,9 @@ describe Track do
     it "should skip discovered track if there is an error processing LastFM results" do
       LastFm.should_receive(:poll).once.and_raise(IOError)
 
+      @original_stdout = $stdout
+      $stdout = StringIO.new
+
       music_path = File.join Rails.root.to_s, "spec", "assets"
 
       Track.destroy_all
@@ -300,6 +303,15 @@ describe Track do
           Track.discover(music_path).should be true
         }.to change(Genre, :count).by(0)
       }.to change(Track, :count).by(0)
+
+      [
+        "Discovered 0 new tracks.",
+        "Removed 0 deleted or moved tracks."
+      ].each do |expected_string|
+        $stdout.string.should include(expected_string)
+      end
+
+      $stdout = @original_stdout
     end
   end
 end
