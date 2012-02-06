@@ -6,9 +6,12 @@ class DJ < ActiveRecord::Base
 
   before_create :check_no_existing_of_this_dj
   before_validation :set_radio, :check_playlist
+  after_initialize :set_default_values
   validate :check_type
 
   class_inheritable_accessor :dj_name, :dj_description # Lesson learned: don't accidentally try and override a model's "name" method!
+
+  serialize :data, Hash
 
   def self.get
     raise "You can only get a specific DJ, not the base one." if name == "DJ"
@@ -48,5 +51,9 @@ class DJ < ActiveRecord::Base
 
   def check_no_existing_of_this_dj
     raise "There is already an instance of #{self.class.name}." if type && DJ.find_by_type(type)
+  end
+
+  def set_default_values
+    self.data ||= {}
   end
 end

@@ -14,6 +14,14 @@ describe DJ do
       @dj.radio.should == @radio
       @dj.should be_an_instance_of(RandomGenreDJ)
     end
+
+    it "should serialize data for saving" do
+      dj_data = {:one => [2], 3 => "four"}
+      @dj.data = dj_data
+      @dj.save.should be true
+      @dj.reload
+      @dj.data.should == dj_data
+    end
   end
 
   describe :accessors do
@@ -89,6 +97,13 @@ describe DJ do
         dj.playlist.should_not be_nil
         dj.playlist.should be_an_instance_of(Playlist)
         dj.playlist.new_record?.should be true
+      end
+    end
+
+    describe :set_default_values do
+      it "should set default values on initialize" do
+        dj = RandomGenreDJ.new
+        dj.data.should == {}
       end
     end
   end
