@@ -4,3 +4,10 @@ random_genre_dj:
   created_at: <%= 1.month.ago %>
   updated_at: <%= 1.month.ago %>
   type: RandomGenreDJ
+time_of_day_dj:
+  id: 2
+  radio_id: 1
+  created_at: <%= 5.days.ago %>
+  updated_at: <%= 3.days.ago %>
+  type: TimeOfDayDJ
+  data: <%= {:last_time_bracket => 12}.to_yaml.inspect %>

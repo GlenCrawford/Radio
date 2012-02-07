@@ -3,3 +3,8 @@ random_genre_dj_playlist:
   created_at: <%= 1.month.ago %>
   updated_at: <%= 5.hours.ago %>
   dj_id: 1
+time_of_day_dj_playlist:
+  id: 2
+  created_at: <%= 5.days.ago %>
+  updated_at: <%= 2.hours.ago %>
+  dj_id: 2
