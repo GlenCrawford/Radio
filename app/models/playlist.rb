@@ -41,7 +41,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def remove_all_tracks
-    tracks.clear
+    tracks(true).clear
   end
 
   # Build an array of the attributes of the tracks that we want to send the client JS.

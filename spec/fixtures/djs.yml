@@ -6,7 +6,7 @@ random_genre_dj:
   type: RandomGenreDJ
 time_of_day_dj:
   id: 2
-  radio_id: 1
+  radio_id: 
   created_at: <%= 5.days.ago %>
   updated_at: <%= 3.days.ago %>
   type: TimeOfDayDJ

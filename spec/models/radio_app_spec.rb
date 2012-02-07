@@ -75,8 +75,8 @@ describe RadioApp do
     it "should get all DJs" do
       djs = @radio.djs
       djs.should be_an_instance_of(Array)
-      djs.size.should == 1
-      djs.should == [djs(:random_genre_dj)]
+      djs.size.should == 2
+      djs.sort{|a, b| a.name <=> b.name}.should == [djs(:random_genre_dj), djs(:time_of_day_dj)]
     end
   end
 
