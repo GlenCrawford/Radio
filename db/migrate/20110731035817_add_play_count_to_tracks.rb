@@ -1,3 +1,7 @@
+class Track < ActiveRecord::Base
+  #
+end
+
 class AddPlayCountToTracks < ActiveRecord::Migration
   def self.up
     add_column :tracks, :play_count, :integer
