@@ -125,8 +125,17 @@ var Misc = {
 
 var Response = {
   receive: function(event, xhr, ajax_options) {
-    response = $.parseJSON(xhr.responseText);
-    $.each(Object.keys(response), function(index, value) {
+    var response = $.parseJSON(xhr.responseText);
+    var response_keys = Object.keys(response);
+
+    // Make sure the playlist key is at the start.
+    playlist_index = response_keys.indexOf("playlist");
+    if (playlist_index != -1) {
+      response_keys.splice(playlist_index, 1);
+      response_keys.unshift("playlist");
+    }
+
+    $.each(response_keys, function(index, value) {
       Response["receive_" + value](response[value]);
     });
   },
