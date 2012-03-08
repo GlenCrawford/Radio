@@ -13,14 +13,12 @@ class RadioController < ApplicationController
   end
 
   def play
-    until Player.play @track
-      @track = @radio.dj.playlist.remove_current_track
-    end
+    set_player_action :play
     render :status => :ok, :json => response_for_client(:playlist, :player) if params[:action].to_sym == :play
   end
 
   def pause
-    Player.pause
+    set_player_action :pause
     render :status => :ok, :json => response_for_client(:player)
   end
 
@@ -40,5 +38,9 @@ class RadioController < ApplicationController
 
   def maintain_playlist
     @radio.dj.run if @radio.dj.need_to_run?
+  end
+
+  def set_player_action(new_action)
+    Rails.cache.write :player_action, new_action
   end
 end

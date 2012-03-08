@@ -22,6 +22,8 @@ describe RadioController do
 
     @current_track = tracks :tracks_0158
     @next_track = tracks :tracks_0107
+
+    Rails.cache.delete :player_action
   end
 
   describe :index do
@@ -101,39 +103,13 @@ describe RadioController do
     it "should run play and return updated playlist and player status" do
       sign_in @user
 
-      Player.stub!(:play).and_return(true)
-      Player.should_receive(:play).once
-
       get :play, :track => @current_track.id
 
       assigns(:user).should == @user
       assigns(:radio).should == @radio
       assigns(:track).should == @current_track
 
-      response.should be_success
-      response.code.should == "200"
-      response.content_type.should == "application/json"
-      response.body.should == expected_update_data(:playlist, :player).to_json
-    end
-
-    it "should run play, and play the next song if the current one won't play" do
-      sign_in @user
-
-      Player.stub!(:play).and_return(false, true)
-      Player.should_receive(:play).twice
-
-      @radio.dj.playlist.tracks.size.should == 24
-
-      expect {
-        get :play, :track => @current_track.id
-      }.to change(PlaylistTrack, :count).by(-1)
-
-      @radio.dj.playlist.tracks(true).size.should == 23
-      @radio.dj.playlist.current_track.should == @next_track
-
-      assigns(:user).should == @user
-      assigns(:radio).should == @radio
-      assigns(:track).should == @next_track
+      Rails.cache.fetch(:player_action).should == :play
 
       response.should be_success
       response.code.should == "200"
@@ -168,14 +144,13 @@ describe RadioController do
     it "should pause and render update data" do
       sign_in @user
 
-      Player.stub!(:pause).and_return(true)
-      Player.should_receive(:pause).once
-
       get :pause, :track => @current_track.id
 
       assigns(:user).should == @user
       assigns(:radio).should == @radio
       assigns(:track).should == @current_track
+
+      Rails.cache.fetch(:player_action).should == :pause
 
       response.should be_success
       response.code.should == "200"
@@ -210,9 +185,6 @@ describe RadioController do
     it "should veto track and render update data" do
       sign_in @user
 
-      Player.stub!(:play).and_return(true)
-      Player.should_receive(:play).once
-
       @user.vetoes.size.should == 3
       @current_track.vetoes.size.should == 0
 
@@ -228,6 +200,8 @@ describe RadioController do
       assigns(:user).should == @user
       assigns(:radio).should == @radio
       assigns(:track).should == @next_track
+
+      Rails.cache.fetch(:player_action).should == :play
 
       @user.vetoes(true).size.should == 4
       @current_track.vetoes(true).size.should == 1
@@ -302,6 +276,20 @@ describe RadioController do
         @radio.reload
         @radio.dj.playlist.tracks.size.should > 1
       end
+    end
+  end
+
+  describe :set_player_action do
+    it "should set the player action on play request" do
+      sign_in @user
+
+      Rails.cache.fetch(:player_action).should be nil
+
+      get :play, :track => @current_track.id
+
+      response.should be_success
+
+      Rails.cache.fetch(:player_action).should == :play
     end
   end
 end
