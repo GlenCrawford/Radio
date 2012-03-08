@@ -53,9 +53,11 @@ var User = {
 var Player = {
   play: function() {
     this.send_command("play");
+    this.set_status("playing");
   },
   pause: function() {
     this.send_command("pause");
+    this.set_status("paused");
   },
   veto: function() {
     this.send_command("veto");
