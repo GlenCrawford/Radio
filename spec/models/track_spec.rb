@@ -197,7 +197,7 @@ describe Track do
       @track.increment_play_count
 
       @track.reload
-      @track.score.should == 0.24864188796779113
+      @track.score.should be_within(0.005).of(0.248)
     end
   end
 
